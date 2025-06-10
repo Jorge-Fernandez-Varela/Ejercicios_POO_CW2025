@@ -31,3 +31,12 @@ class Animal
 }
 
 let majolote = new Animal(50, 4, "Rosa", 15, 1);
+
+majolote.avanzar();
+majolote.comer("pasto");
+majolote.crecer();
+
+function describirAnimal(animal)
+{
+    console.log(`El animal pesa ${animal.peso} kg, tiene ${animal.numeroPatas} patas, es de color ${animal.color}, mide ${animal.altura} cm y está en la posición ${animal.posicion}.`);
+}
