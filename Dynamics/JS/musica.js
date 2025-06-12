@@ -4,7 +4,13 @@ class Cancion{
         /*
             Deben de asignar a los atributos que faltan de la clase Cancion como corresponda
         */
-        this.reproduciendo = false; 
+       this.nombre = nombre;
+       this.id = id;
+       this.genero = genero;
+       this.artista = artista;
+       this.url = url;
+       this.reproduciendo = false;
+       
     }
 
     setNombre(nombre){
@@ -13,24 +19,53 @@ class Cancion{
     getNombre(){
         return this.nombre;
     }
-
-    /*
-        Deben de colocar los getters y setters que faltan
-    */
+    setId(id){
+        this.id = id;
+    }
+    getId(){
+        return this.id;
+    }
+    setGenero(genero){
+        this.genero = genero;
+    }
+    getGenero(){
+        return this.genero;
+    }
+    setArtista(artista){
+        this.artista = artista;
+    }
+    getArtista(){
+        return this.artista;
+    }
+    setUrl(url){
+        this.url = url;
+    }
+    getUrl(){
+        return this.url;
+    }
     
 
     //Devuelve true si esta reproduciendo, false en otro caso
     estaReproduciendo(){
-
+        return this.reproduciendo;
     }
 
     //Cambia de no reproduciendo a reproduciendo
     play(){
-        
+        if (!this.reproduciendo == true)
+        {
+            this.reproduciendo = true;
+        }
+        console.log("Su lista se esta reproduciendo");
     }
 
     //Cambia de reproduciendo a no reproduciendo
     stop(){
+        if (!this.reproduciendo == false)
+        {
+            this.reproduciendo = false;
+        }
+        console.log("Su lista esta en stop");
         
     }
 }
@@ -44,31 +79,43 @@ class ListaDeReproduccion{
     //Elimína el elemento del índice y lo devuelve
     pop(indice){
         //Pista: Investiguen el método splice(inicio,numero_de_elementos_a_borrar) dentro del objeto Array
+        this.lista.splice(indice, 1);
+        return this.lista;
     }
 
     //Inserta un objeto canción dentro de la lista
-    push(objeto){
-        
+    push(nombre, id, genero, artista, url){
+        let objeto = new Cancion(nombre, id, genero, artista, url);
+        this.lista.push(objeto);
     }
 
     //Devuelve la longitud de la lista
     getSize(){
-        
+        return this.lista.length;
     }
     
     shuffle(){
-        //Visto en clase
+        for (let i = 0; i < this.lista.length; i++) {
+            let j = Math.floor(Math.random() * (i+1));
+            intercambiar(this.lista, i, j);
+        }
     }
 
     //Devuelve la lista
     get(){
-        
+        return this.lista;
     }
 
     fusionar(listaDeReproduccion){
-        //Visto en clase
+        return listaDeReproduccion.get().concat(this.lista);
     }
 
+}
+
+function intercambiar(arreglo, indicea, indiceb){
+    let c = arreglo[indicea];
+    arreglo[indicea] = arreglo[indiceb];
+    arreglo[indiceb] = c;
 }
 
 canciones = [ 
